@@ -1,23 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./globalComponents/header.tsx";
+import {
+  HashRouter,
+  Route,
+  Routes,
+  Navigate,
+  Redirect,
+} from "react-router-dom";
+import { urlList } from "./router/index.ts";
+import "./assets/styles/common.less";
 
 function App() {
+  const getRoutes = () => {
+    const routes = [];
+    urlList.forEach((route) => {
+      routes.push(
+        <Route
+          key={route.name}
+          path={route.url}
+          component={route.component}
+        ></Route>
+      );
+    });
+    return routes;
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Header></Header>
       </header>
+      <div className="App-body">
+        <HashRouter>
+          <Routes>
+            {getRoutes()}
+            {/* <Redirect to="/content/list"></Redirect> */}
+            {/* <Navigate to="/content/list"/> */}
+            <Route path="/" element={<Navigate replace to="/content/list" />} />
+          </Routes>
+        </HashRouter>
+      </div>
     </div>
   );
 }
