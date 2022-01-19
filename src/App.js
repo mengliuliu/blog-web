@@ -6,7 +6,7 @@ import {
   Navigate,
   Redirect,
 } from "react-router-dom";
-import { urlList } from "./router/index.ts";
+import { urlList } from "./router/index";
 import "./assets/styles/common.less";
 
 function App() {

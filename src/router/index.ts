@@ -1,5 +1,5 @@
-import List from "../view/list/index.tsx";
-import Detail from "../view/detail/index.tsx";
+import List from "../view/list/index";
+import Detail from "../view/detail/index";
 
 // const urlComponentMap = {
 //   "/content/list": List,
