@@ -11,6 +11,7 @@ module.exports = merge(BaseConfig, {
       // static: ['assets']
       // directory: path.join(__dirname, "../../src"),
     },
+    historyApiFallback: true,// 浏览器刷新 404
     hot: true,
     open: true,
     host: config.dev.host,
