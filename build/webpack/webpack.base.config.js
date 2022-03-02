@@ -17,7 +17,7 @@ module.exports = {
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx", "css", "less"],
     alias: {
-      "@src": `${process.cwd()}/src`,
+      "@src": path.resolve(process.cwd(), "src/"),
     },
   },
   // node: {

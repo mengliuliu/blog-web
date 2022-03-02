@@ -1,8 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import ModuleApi from '@src/network/index'
+// const getArticles = require('@src/network')
 import styled from 'styled-components'
 
 const List = () => {
+    useEffect(() => {
+        getArticleList()
+    }, [])
+
+    const getArticleList = async () => {
+        console.log('getArticles', ModuleApi)
+        const res = await ModuleApi.getArticles()
+        console.log('res', res)
+    }
+
+
     return (
         <Box>
             {/* <div>List</div> */}

@@ -16,7 +16,7 @@ module.exports = merge(BaseConfig, {
     open: true,
     host: config.dev.host,
     port: config.dev.port,
-    // proxy: config.proxy,
+    proxy: config.proxy,
     // historyApiFallback: true,
     // contentBase: `${process.cwd()}/public`,
   },
