@@ -1,18 +1,22 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
-const Detail = () => {
-    return (
-        <Box>
-            <div>Detail</div>
-            <div><Link to="/home">首页</Link></div>
-        </Box>
+const Detail = (props: any) => {
+  useEffect(() => {
+    console.log("props", props);
+  }, []);
 
-    )
-}
+  return (
+    <Box>
+      <div>Detail</div>
+      <div>
+        <Link to="/home">首页</Link>
+      </div>
+    </Box>
+  );
+};
 
-const Box = styled.div`
-`
+const Box = styled.div``;
 
-export default Detail
+export default Detail;
