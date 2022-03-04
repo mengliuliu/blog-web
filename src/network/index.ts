@@ -1,11 +1,10 @@
+import { useParams } from "react-router-dom";
 import request from "../utils/request";
 export default {
-  getArticles() {
+  getArticleList() {
     return request.get("/api/articles");
   },
-  //   getBlogDetail(params) {
-  //     return request.get("/api/blog/detail", {
-  //       params,
-  //     });
-  //   },
+  getArticleDetail(params: any) {
+    return request.get("/api/articles/" + params.id);
+  },
 };

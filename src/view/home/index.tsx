@@ -12,7 +12,7 @@ const List = () => {
 
   const getArticleList = async () => {
     console.log("getArticles", ModuleApi);
-    const res = await ModuleApi.getArticles();
+    const res = await ModuleApi.getArticleList();
     setArticleList(res.data);
     console.log("res", res);
   };

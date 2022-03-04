@@ -13,6 +13,7 @@ module.exports = {
     path: path.resolve(__dirname, "../../dist"),
     filename: "bundle.js",
     clean: true,
+    publicPath: "/",
   },
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx", "css", "less"],
@@ -111,6 +112,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: "test html-webpack-plugin",
       template: path.resolve(__dirname, "../../public/index.html"),
+      minify: {
+        removeComments: true, // 移除HTML中的注释
+        // collapseWhitespace: true, // 删除空白符和换行符
+      },
     }),
     new MiniCssExtractPlugin({
       filename: "css/index.css",
