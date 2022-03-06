@@ -17,21 +17,48 @@ const Detail = (props: any) => {
   }, []);
 
   const getArticleDetail = async () => {
-    const res = await ModuleApi.getArticleDetail(params).catch((error) => {});
-    // setArticleDetail(res.data);
+    const res: any = await ModuleApi.getArticleDetail(params).catch((error) => { });
+    setArticleDetail(res.data);
     console.log("res", res);
   };
 
   return (
     <Box>
       <div>Detail</div>
-      <div>
-        <Link to="/home">首页</Link>
+      <div className="detail">
+        <div className="title">{articleDetail.title}</div>
+        <div className="createTime">发布于：{articleDetail.createTime}</div>
+        <div className="content">{articleDetail.content}</div>
+        <div className="data">
+          <div className="view">阅读({articleDetail.view_count})</div>
+          <div className="comment">评论({articleDetail.comment_count})</div>
+        </div>
       </div>
     </Box>
   );
 };
 
-const Box = styled.div``;
+const Box = styled.div`
+.detail {
+.title {
+  font-size: 30px;
+  padding: 10px;
+}
+.createTime {
+  color: rgba(0,0,0,.5);
+  padding: 10px;
+}
+.content {
+  padding: 10px;
+}
+.data {
+  display: flex;
+  justify-content: flex-end;
+  .view {
+    padding-right: 20px;
+  }
+}
+}
+`;
 
 export default Detail;

@@ -5,7 +5,7 @@ const Header = () => {
     return (
         <Box>
             <div className='name'>
-                <a className="logo" href="/">小孟小刘</a>
+                <a className="logo" href="/">子皿文刀</a>
             </div>
             <div className='category'>
                 <div className='home'>首页</div>
