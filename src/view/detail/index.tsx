@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { stampToTime } from "@src/utils/timeFilter"
 import ViewMd from './components/ViewMd'
 import ModuleApi from "@src/network/index";
@@ -28,7 +28,7 @@ const Detail = (props: any) => {
     <Box>
       <div className="detail">
         <div className="title">{articleDetail.title}</div>
-        <div className="createTime">发布于：{stampToTime(articleDetail.createTime, 1)}</div>
+        <div className="createTime">发布时间：{stampToTime(articleDetail.createTime, 1)}</div>
         <div className="content">
           <ViewMd content={articleDetail.content ? articleDetail.content : ''}></ViewMd>
         </div>

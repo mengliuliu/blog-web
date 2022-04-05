@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Home from './view/home'
 import Detail from './view/detail'
+import About from './view/about'
 import Header from './components/header'
 import styled from 'styled-components'
 
@@ -13,11 +14,10 @@ const App = () => {
                 <Routes>
                     <Route path='/' element={<Home />} />
                     <Route path='/home' element={<Home />} />
+                    <Route path='/about' element={<About />} />
                     <Route path='/detail/:id' element={<Detail />} />
                 </Routes>
             </div>
-
-            {/* <Home></Home> */}
         </Box>
 
     )

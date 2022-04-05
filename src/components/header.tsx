@@ -9,9 +9,11 @@ const Header = () => {
             </div>
             <div className='category'>
                 <div className='home' >
-                    <a className='firstPage' href="/">首页</a>
+                    <a href="/">首页</a>
                 </div>
-                <div className='about'>关于</div>
+                <div className='about'>
+                    <a href="/about">关于</a>
+                </div>
                 <div className='message'>留言</div>
             </div>
         </Box >
@@ -40,13 +42,17 @@ const Box = styled.div`
     align-items: center;
     .home {
         width: 50px;
-        .firstPage {
+        a {
             color: black;
             text-decoration:none;
         }
     }
     .about {
         width: 50px;
+        a {
+            color: black;
+            text-decoration:none;
+        }
     }
     .message {
         width: 50px;
