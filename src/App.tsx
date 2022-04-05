@@ -9,11 +9,14 @@ const App = () => {
     return (
         <Box>
             <Header></Header>
-            <Routes>
-                <Route path='/' element={<Home />}  />
-                <Route path='/home' element={<Home />} />
-                <Route path='/detail/:id' element={<Detail />} />
-            </Routes>
+            <div className='main'>
+                <Routes>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/home' element={<Home />} />
+                    <Route path='/detail/:id' element={<Detail />} />
+                </Routes>
+            </div>
+
             {/* <Home></Home> */}
         </Box>
 
@@ -21,8 +24,12 @@ const App = () => {
 }
 
 const Box = styled.div`
-width: 80%;
-margin: auto;
+    width: 80%;
+    margin: auto;
+    .main {
+        height: calc(100vh - 80px);
+        /* overflow: auto; */
+    }
 `
 
 export default App

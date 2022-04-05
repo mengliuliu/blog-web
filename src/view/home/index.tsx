@@ -1,56 +1,80 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Pagination } from "antd"
+import { stampToTime } from "@src/utils/timeFilter"
 import ModuleApi from "@src/network/index";
-// const getArticles = require('@src/network')
 import styled from "styled-components";
 
 const List = () => {
   const [articleList, setArticleList] = useState<any>([]);
+  const [pagination, setPagination] = useState({ current: 1, pageSize: 10, total: 0 })
   useEffect(() => {
     getArticleList();
-  }, []);
+  }, [pagination.current, pagination.pageSize]);
 
   const getArticleList = async () => {
-    console.log("getArticles", ModuleApi);
-    const res = await ModuleApi.getArticleList();
-    setArticleList(res.data);
+    const params = {
+      pageNum: pagination.current,
+      pageSize: pagination.pageSize,
+    }
+    const res: any = await ModuleApi.getArticleList(params);
+    pagination.total = res['total']
+
+    if (res.list && res.list.length) {
+      setArticleList(res['list'])
+    } else {
+      setArticleList([])
+    }
     console.log("res", res);
   };
 
+  const handlePageNumChange = (current: number) => {
+    pagination.current = current
+    setPagination({ ...pagination })
+  }
+  const handlePageSizeChange = (size: number) => {
+    pagination.current = 1
+    pagination.pageSize = size
+    setPagination({ ...pagination })
+  }
+
   return (
     <Box>
-      {/* <div>List</div> */}
-      {/* <nav>
-                <Link to="/detail">Detail</Link>
-            </nav> */}
-
       {articleList.map((article: any) => {
         return (
-          <div className="item">
+          <div key={article.id} className="item">
             <h2>
               <Link to={"/detail/" + article.id}>{article.title}</Link>
             </h2>
             <div className="description">{article.content}</div>
             <div className="date">
-              发布时间：{article.createTime} 评论({article.comment_count})
+              发布时间：{stampToTime(article.createTime, 7)} 评论({article.comment_count})
             </div>
+            <div className="readMore">
+              <Link to={"/detail/" + article.id}>阅读更多</Link>
+            </div>
+            {/* <hr /> */}
           </div>
         );
       })}
-      {/* <div className="item">
-        <h2>
-          <Link to="/detail">基于PromisesA+规范手写Promise</Link>
-        </h2>
-        <div className="description">
-          Promise 对象用于表示一个异步操作的最终完成 (或失败)及其结果值。一个
-          Promise 对象代表一个在这个 promise
-          被创建出来时不一定已知的值。它让您能够把异步操作最终的成功返回值或者失败原因和相应的处理程序关联起来。
-          这样使得异步方法可以像同步方法那样返回值：异步方法并不会立即返回最终的值，而是会返回一个
-          promise，以便在未来某个时候把值交给使用者。Promise
-          可以让异步操作写起来，就像在写同步操作的流程，而不必一层层地嵌套回调函数。
-        </div>
-        <div className="date">发布时间：2021-09-14 评论(10)</div>
-      </div> */}
+      <div className="Pagination">
+        <Pagination
+          total={pagination.total}
+          showTotal={(total: number) => `共搜索到 ${total} 条数据`}
+          defaultPageSize={10}
+          pageSizeOptions={['5', '10', '25', '50']}
+          defaultCurrent={1}
+          onChange={(page: number, pageSize: number) => {
+            handlePageNumChange(page)
+          }}
+          onShowSizeChange={(current: number, size: number) => {
+            handlePageSizeChange(size)
+          }
+          }
+        />
+      </div>
+      <div className="about">
+      </div>
     </Box>
   );
 };
@@ -58,9 +82,11 @@ const List = () => {
 const Box = styled.div`
   .item {
     margin-bottom: 15px;
+    border-bottom: 1px solid #666;
     h2 {
       a {
         color: #3e3b3f;
+        text-decoration: none;
       }
       display: inline-block;
       white-space: nowrap;
@@ -82,6 +108,21 @@ const Box = styled.div`
     .date {
       text-align: right;
     }
+    .readMore {
+      padding-bottom: 5px;
+      a {
+        color: #16982b;
+        text-decoration: none;
+      }
+
+    }
+  }
+  .Pagination {
+    text-align: right;
+  }
+  .about {
+    height: 30px;
+
   }
 `;
 

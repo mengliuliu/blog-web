@@ -8,7 +8,9 @@ const Header = () => {
                 <a className="logo" href="/">子皿文刀</a>
             </div>
             <div className='category'>
-                <div className='home'>首页</div>
+                <div className='home' >
+                    <a className='firstPage' href="/">首页</a>
+                </div>
                 <div className='about'>关于</div>
                 <div className='message'>留言</div>
             </div>
@@ -18,12 +20,12 @@ const Header = () => {
 }
 
 const Box = styled.div`
-display: flex;
-justify-content: space-between;
-height: 80px;
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
 .name {
-display: flex;
-align-items: center;
+    display: flex;
+    align-items: center;
 .logo {
     display: block;
     font-size: 25px;
@@ -38,6 +40,10 @@ align-items: center;
     align-items: center;
     .home {
         width: 50px;
+        .firstPage {
+            color: black;
+            text-decoration:none;
+        }
     }
     .about {
         width: 50px;
