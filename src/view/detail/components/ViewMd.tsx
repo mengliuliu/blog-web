@@ -55,10 +55,37 @@ const ViewMd = (props: PropsStruct) => {
 const Box = styled.div`
     display: flex;
     .content{
-        flex: 1;
+        width: 70%;
     }
     .nav{
         width: 30%;
+    }
+    @media screen and (max-width: 1024px) {
+        .content{
+            width: 70%;
+            /* flex: 1; */
+        }
+        .nav{
+            width: 30%;
+        }
+    }
+    /* ipad */
+    @media screen and (max-width: 768px) {
+        .content{
+            width: 80%;
+        }
+        .nav{
+            width: 20%;
+        }
+    }
+    /* iphone6 7 8 plus */
+    @media screen and (max-width: 414px) {
+        .content{
+            width: 100%;
+        }
+        .nav{
+            display: none;
+        }
     }
 `
 
